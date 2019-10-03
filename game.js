@@ -19,6 +19,7 @@ canvas.width = 512;
 canvas.height = 480;
 document.body.appendChild(canvas);
 
+
 let bgReady, heroReady, monsterReady;
 let bgImage, heroImage, monsterImage;
 
@@ -48,15 +49,15 @@ function loadImages() {
   monsterImage.src = "images/monster.png";
 }
 
-/** 
- * Setting up our characters.
- * 
- * Note that heroX represents the X position of our hero.
- * heroY represents the Y position.
- * We'll need these values to know where to "draw" the hero.
- * 
- * The same applies to the monster.
- */
+// /** 
+//  * Setting up our characters.
+//  * 
+//  * Note that heroX represents the X position of our hero.
+//  * heroY represents the Y position.
+//  * We'll need these values to know where to "draw" the hero.
+//  * 
+//  * The same applies to the monster.
+//  */
 
 let heroX = canvas.width / 2;
 let heroY = canvas.height / 2;
@@ -64,13 +65,14 @@ let heroY = canvas.height / 2;
 let monsterX = 100;
 let monsterY = 100;
 
-/** 
- * Keyboard Listeners
- * You can safely ignore this part, for now. 
- * 
- * This is just to let JavaScript know when the user has pressed a key.
-*/
+// /** 
+//  * Keyboard Listeners
+//  * You can safely ignore this part, for now. 
+//  * 
+//  * This is just to let JavaScript know when the user has pressed a key.
+// */
 let keysDown = {};
+
 function setupKeyboardListeners() {
   // Check for keys pressed where key represents the keycode captured
   // For now, do not worry too much about what's happening here. 
@@ -84,17 +86,18 @@ function setupKeyboardListeners() {
 }
 
 
-/**
- *  Update game objects - change player position based on key pressed
- *  and check to see if the monster has been caught!
- *  
- *  If you change the value of 5, the player will move at a different rate.
- */
+// /**
+//  *  Update game objects - change player position based on key pressed
+//  *  and check to see if the monster has been caught!
+//  *  
+//  *  If you change the value of 5, the player will move at a different rate.
+//  */
 let update = function () {
+
   // Update the time.
   elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 
-
+ 
   if (38 in keysDown) { // Player is holding up key
     heroY -= 5;
   }
@@ -123,9 +126,9 @@ let update = function () {
   }
 };
 
-/**
- * This function, render, runs as often as possible.
- */
+// /**
+//  * This function, render, runs as often as possible.
+//  */
 var render = function () {
   if (bgReady) {
     ctx.drawImage(bgImage, 0, 0);
@@ -139,11 +142,11 @@ var render = function () {
   ctx.fillText(`Seconds Remaining: ${SECONDS_PER_ROUND - elapsedTime}`, 20, 100);
 };
 
-/**
- * The main game loop. Most every game will have two distinct parts:
- * update (updates the state of the game, in this case our hero and monster)
- * render (based on the state of our game, draw the right things)
- */
+// /**
+//  * The main game loop. Most every game will have two distinct parts:
+//  * update (updates the state of the game, in this case our hero and monster)
+//  * render (based on the state of our game, draw the right things)
+//  */
 var main = function () {
   update(); 
   render();
@@ -152,12 +155,12 @@ var main = function () {
   requestAnimationFrame(main);
 };
 
-// Cross-browser support for requestAnimationFrame.
-// Safely ignore this line. It's mostly here for people with old web browsers.
+// // Cross-browser support for requestAnimationFrame.
+// // Safely ignore this line. It's mostly here for people with old web browsers.
 var w = window;
 requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
 
-// Let's play this game!
+// // Let's play this game!
 loadImages();
 setupKeyboardListeners();
 main();
